@@ -10,57 +10,32 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="ambient ambient-a"></div>
-  <div class="ambient ambient-b"></div>
-
-  <div class="app-shell">
-    <header class="hero surface">
-      <div class="hero-copy">
-        <div class="eyebrow">Apple / Epic / demo</div>
-        <h1>What Was in the Air</h1>
-        <p>Internal moments, made explorable.</p>
-      </div>
-      <div class="hero-side">
-        <button id="play-toggle" class="primary-btn" type="button">Play</button>
-      </div>
+  <div class="story-shell">
+    <header class="top-strip">
+      <div class="top-meta">Apple / Epic / internal only</div>
+      <div id="progress-dots" class="progress-dots"></div>
     </header>
 
-    <section class="timeline surface compact-section">
-      <div class="mini-head">Years</div>
-      <div id="year-track" class="year-track"></div>
-    </section>
+    <main id="slide-stage" class="slide-stage"></main>
 
-    <section class="topics surface compact-section">
-      <div class="mini-head">Topics</div>
-      <div id="topic-filters" class="topic-grid"></div>
-    </section>
-
-    <main class="content-grid">
-      <section class="panel surface">
-        <div class="panel-head simple-head">
-          <h3>Signals</h3>
-        </div>
-        <div id="topic-radar" class="topic-radar"></div>
-      </section>
-
-      <section class="panel surface panel-moments">
-        <div class="panel-head simple-head">
-          <h3>Moments</h3>
-          <span id="result-count" class="small-pill"></span>
-        </div>
-        <div id="record-list" class="record-list"></div>
-      </section>
-
-      <section class="panel surface panel-detail">
-        <div class="panel-head simple-head">
-          <h3>Selected</h3>
-        </div>
-        <div id="detail-view" class="detail-view empty">
-          <p>Select a moment.</p>
-        </div>
-      </section>
-    </main>
+    <footer class="nav-strip">
+      <button id="prev-btn" class="nav-btn" type="button">Back</button>
+      <button id="next-btn" class="nav-btn nav-btn-primary" type="button">Next</button>
+    </footer>
   </div>
+
+  <template id="archive-template">
+    <div class="archive-shell">
+      <div class="archive-top">
+        <div>
+          <div class="small-label">Archive</div>
+          <h2>Moments</h2>
+        </div>
+        <button id="back-to-story" class="nav-btn" type="button">Back to story</button>
+      </div>
+      <div id="archive-records" class="archive-records"></div>
+    </div>
+  </template>
 
   <script src="app.js"></script>
 </body>
