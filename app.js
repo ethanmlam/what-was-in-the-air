@@ -18,10 +18,6 @@ function years() {
   return [...new Set(state.records.map((record) => record.year))].sort((a, b) => a - b);
 }
 
-function topics() {
-  return [...new Set(state.records.map((record) => record.topic))].sort();
-}
-
 function filteredRecords() {
   return state.records.filter((record) => {
     const yearMatch = state.year === 'all' || record.year === state.year;
@@ -45,7 +41,6 @@ function selectRecord(id) {
 }
 
 function render() {
-  renderStats();
   renderYearTrack();
   renderTopicTiles();
   renderTopicRadar();
@@ -54,20 +49,14 @@ function render() {
   renderPlayButton();
 }
 
-function renderStats() {
-  const records = filteredRecords();
-  document.getElementById('active-year-label').textContent = state.year === 'all' ? 'All years' : String(state.year);
-  document.getElementById('result-count').textContent = String(records.length);
-}
-
 function renderYearTrack() {
   const el = document.getElementById('year-track');
   const availableYears = years();
   const counts = new Map();
   state.records.forEach((record) => counts.set(record.year, (counts.get(record.year) || 0) + 1));
 
-  const items = [{ value: 'all', label: 'All years', count: state.records.length, caption: 'full canvas' }]
-    .concat(availableYears.map((year) => ({ value: year, label: String(year), count: counts.get(year) || 0, caption: 'moments' })));
+  const items = [{ value: 'all', label: 'All', count: state.records.length }]
+    .concat(availableYears.map((year) => ({ value: year, label: String(year), count: counts.get(year) || 0 })));
 
   el.innerHTML = '';
   items.forEach((item) => {
@@ -78,7 +67,6 @@ function renderYearTrack() {
         <strong>${item.label}</strong>
         <span class="count">${item.count}</span>
       </div>
-      <div class="caption">${item.caption}</div>
     `;
     button.addEventListener('click', () => {
       state.year = item.value;
@@ -95,17 +83,15 @@ function renderTopicTiles() {
     ? state.records
     : state.records.filter((record) => record.year === state.year);
   const topicCounts = countsByTopic(records);
-  const max = Math.max(...topicCounts.map((item) => item.count), 1);
 
   const allCount = records.length;
   el.innerHTML = '';
 
   const allTile = document.createElement('button');
-  allTile.className = `topic-tile ${state.topic === 'all' ? 'active' : ''}`;
+  allTile.className = `topic-tile compact ${state.topic === 'all' ? 'active' : ''}`;
   allTile.innerHTML = `
-    <div class="topic-name">all topics</div>
-    <div class="topic-meta"><span>show everything</span><strong>${allCount}</strong></div>
-    <div class="topic-bar"><div class="topic-bar-fill" style="width: 100%"></div></div>
+    <div class="topic-name">all</div>
+    <div class="topic-meta"><strong>${allCount}</strong></div>
   `;
   allTile.addEventListener('click', () => {
     state.topic = 'all';
@@ -116,12 +102,10 @@ function renderTopicTiles() {
 
   topicCounts.forEach(({ topic, count }) => {
     const tile = document.createElement('button');
-    const width = Math.max(12, Math.round((count / max) * 100));
-    tile.className = `topic-tile ${state.topic === topic ? 'active' : ''}`;
+    tile.className = `topic-tile compact ${state.topic === topic ? 'active' : ''}`;
     tile.innerHTML = `
       <div class="topic-name">${topic}</div>
-      <div class="topic-meta"><span>matching moments</span><strong>${count}</strong></div>
-      <div class="topic-bar"><div class="topic-bar-fill" style="width:${width}%"></div></div>
+      <div class="topic-meta"><strong>${count}</strong></div>
     `;
     tile.addEventListener('click', () => {
       state.topic = topic;
@@ -145,7 +129,7 @@ function renderTopicRadar() {
     row.innerHTML = `
       <div class="radar-top">
         <div class="radar-name">${topic}</div>
-        <div class="radar-count">${count} moments</div>
+        <div class="radar-count">${count}</div>
       </div>
       <div class="radar-bar"><div class="radar-fill" style="width:${Math.round((count / max) * 100)}%"></div></div>
     `;
@@ -156,6 +140,7 @@ function renderTopicRadar() {
 function renderRecordList() {
   const records = filteredRecords();
   const list = document.getElementById('record-list');
+  document.getElementById('result-count').textContent = `${records.length}`;
   list.innerHTML = '';
 
   records.forEach((record) => {
@@ -174,7 +159,7 @@ function renderRecordList() {
   });
 
   if (!records.length) {
-    list.innerHTML = `<div class="detail-view empty"><p>No moments match this slice yet.</p></div>`;
+    list.innerHTML = `<div class="detail-view empty"><p>No moments.</p></div>`;
   }
 }
 
@@ -219,13 +204,7 @@ function renderDetail() {
       <div class="detail-value">${record.whyItMatters}</div>
     </div>
 
-    <div class="detail-footnote">
-      Company: ${record.company}<br>
-      Case: ${record.case}<br>
-      ${record.demo ? 'This screen is live, but the dataset is still demo scaffold data.' : ''}
-    </div>
-
-    <a class="detail-source" href="${record.sourceUrl}" target="_blank" rel="noreferrer">Open source → ${record.sourceLabel}</a>
+    <a class="detail-source" href="${record.sourceUrl}" target="_blank" rel="noreferrer">Open source</a>
   `;
 }
 
@@ -266,7 +245,7 @@ function stopPlay() {
 
 function renderPlayButton() {
   const btn = document.getElementById('play-toggle');
-  btn.textContent = state.playing ? 'Pause years' : 'Play years';
+  btn.textContent = state.playing ? 'Pause' : 'Play';
   btn.classList.toggle('playing', state.playing);
 }
 

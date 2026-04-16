@@ -68,8 +68,8 @@ h1 {
   margin: 0;
   max-width: 720px;
   color: var(--muted-strong);
-  line-height: 1.65;
-  font-size: 17px;
+  line-height: 1.5;
+  font-size: 18px;
 }
 
 .hero-side {
@@ -108,43 +108,29 @@ h1 {
   border-color: var(--accent);
 }
 
-.stats-row {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
-  margin-top: 18px;
-}
-
-.stat-card {
-  padding: 16px 18px;
-  background: var(--surface-soft);
-}
-
-.stat-value {
-  margin-top: 8px;
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-}
-
 .timeline,
 .topics {
   margin-top: 18px;
-  padding: 20px 22px;
+  padding: 16px 18px 18px;
 }
 
-.section-head {
+.compact-section {
   display: flex;
-  justify-content: space-between;
-  align-items: end;
+  flex-direction: column;
   gap: 12px;
-  margin-bottom: 18px;
 }
 
-.section-head h2,
+.mini-head {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
 .panel-head h3 {
-  margin: 6px 0 0;
-  font-size: 24px;
+  margin: 0;
+  font-size: 20px;
   letter-spacing: -0.04em;
 }
 
@@ -208,9 +194,9 @@ h1 {
 }
 
 .topic-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 12px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .topic-tile {
@@ -223,10 +209,24 @@ h1 {
   transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
 }
 
+.topic-tile.compact {
+  min-height: auto;
+  padding: 12px 14px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .topic-name {
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 10px;
+}
+
+.topic-tile.compact .topic-name {
+  margin: 0;
+  font-size: 14px;
 }
 
 .topic-meta {
@@ -236,6 +236,10 @@ h1 {
   color: var(--muted);
   font-size: 13px;
   margin-bottom: 12px;
+}
+
+.topic-tile.compact .topic-meta {
+  margin: 0;
 }
 
 .topic-bar,
@@ -267,6 +271,25 @@ h1 {
 
 .panel-head {
   margin-bottom: 16px;
+}
+
+.simple-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.small-pill {
+  min-width: 34px;
+  height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  font-weight: 700;
 }
 
 .panel-head h3 {
@@ -415,10 +438,6 @@ h1 {
     grid-template-columns: 1fr;
   }
 
-  .stats-row {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .hero {
     flex-direction: column;
   }
@@ -439,10 +458,6 @@ h1 {
   .panel {
     padding: 16px;
     border-radius: 18px;
-  }
-
-  .stats-row {
-    grid-template-columns: 1fr;
   }
 
   .year-track,

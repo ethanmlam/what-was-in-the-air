@@ -16,89 +16,47 @@
   <div class="app-shell">
     <header class="hero surface">
       <div class="hero-copy">
-        <div class="eyebrow">Public internal tech communications</div>
+        <div class="eyebrow">Apple / Epic / demo</div>
         <h1>What Was in the Air</h1>
-        <p>
-          Apple, explored through the Epic v. Apple corpus. Not an archive of PDFs. A curiosity machine for what the company was privately obsessed with.
-        </p>
+        <p>Internal moments, made explorable.</p>
       </div>
       <div class="hero-side">
-        <div class="pill">V1 demo scaffold</div>
-        <button id="play-toggle" class="primary-btn" type="button">Play years</button>
+        <button id="play-toggle" class="primary-btn" type="button">Play</button>
       </div>
     </header>
 
-    <section class="stats-row">
-      <article class="stat-card surface">
-        <div class="stat-label">Company</div>
-        <div class="stat-value">Apple</div>
-      </article>
-      <article class="stat-card surface">
-        <div class="stat-label">Corpus</div>
-        <div class="stat-value">Epic v. Apple</div>
-      </article>
-      <article class="stat-card surface">
-        <div class="stat-label">Visible year</div>
-        <div id="active-year-label" class="stat-value">All</div>
-      </article>
-      <article class="stat-card surface">
-        <div class="stat-label">Matching moments</div>
-        <div id="result-count" class="stat-value">0</div>
-      </article>
-    </section>
-
-    <section class="timeline surface">
-      <div class="section-head">
-        <div>
-          <div class="section-eyebrow">Timeline</div>
-          <h2>Scrub the years</h2>
-        </div>
-        <div class="section-note">Click a year to reshape the canvas</div>
-      </div>
+    <section class="timeline surface compact-section">
+      <div class="mini-head">Years</div>
       <div id="year-track" class="year-track"></div>
     </section>
 
-    <section class="topics surface">
-      <div class="section-head">
-        <div>
-          <div class="section-eyebrow">Topics</div>
-          <h2>What was in the air?</h2>
-        </div>
-        <div class="section-note">Tap a topic to narrow the moments</div>
-      </div>
+    <section class="topics surface compact-section">
+      <div class="mini-head">Topics</div>
       <div id="topic-filters" class="topic-grid"></div>
     </section>
 
     <main class="content-grid">
       <section class="panel surface">
-        <div class="panel-head">
-          <div>
-            <div class="section-eyebrow">Topic radar</div>
-            <h3>Intensity</h3>
-          </div>
+        <div class="panel-head simple-head">
+          <h3>Signals</h3>
         </div>
         <div id="topic-radar" class="topic-radar"></div>
       </section>
 
       <section class="panel surface panel-moments">
-        <div class="panel-head">
-          <div>
-            <div class="section-eyebrow">Moments</div>
-            <h3>Explorable cards</h3>
-          </div>
+        <div class="panel-head simple-head">
+          <h3>Moments</h3>
+          <span id="result-count" class="small-pill"></span>
         </div>
         <div id="record-list" class="record-list"></div>
       </section>
 
       <section class="panel surface panel-detail">
-        <div class="panel-head">
-          <div>
-            <div class="section-eyebrow">Inspector</div>
-            <h3>Selected moment</h3>
-          </div>
+        <div class="panel-head simple-head">
+          <h3>Selected</h3>
         </div>
         <div id="detail-view" class="detail-view empty">
-          <p>Select a moment to inspect the year, people, products, why it matters, and the source link.</p>
+          <p>Select a moment.</p>
         </div>
       </section>
     </main>
