@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What Was in the Air</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">public internal tech communications</div>
+        <h1>What Was in the Air</h1>
+        <p>Apple, as seen through Epic v. Apple</p>
+      </div>
+      <div class="meta-pill">demo scaffold</div>
+    </header>
+
+    <section class="controls">
+      <div>
+        <div class="label">year</div>
+        <div id="year-filters" class="chip-row"></div>
+      </div>
+      <div>
+        <div class="label">topic</div>
+        <div id="topic-filters" class="chip-row"></div>
+      </div>
+    </section>
+
+    <main class="content-grid">
+      <section class="panel panel-list">
+        <div class="panel-header">
+          <h2>moments</h2>
+          <span id="result-count" class="count-pill"></span>
+        </div>
+        <div id="record-list" class="record-list"></div>
+      </section>
+
+      <section class="panel panel-detail">
+        <div class="panel-header">
+          <h2>detail</h2>
+        </div>
+        <div id="detail-view" class="detail-view empty">
+          <p>Select a moment to inspect the year, people, products, and source.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
