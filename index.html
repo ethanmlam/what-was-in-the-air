@@ -4,45 +4,101 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>What Was in the Air</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+
   <div class="app-shell">
-    <header class="topbar">
-      <div>
-        <div class="eyebrow">public internal tech communications</div>
+    <header class="hero surface">
+      <div class="hero-copy">
+        <div class="eyebrow">Public internal tech communications</div>
         <h1>What Was in the Air</h1>
-        <p>Apple, as seen through Epic v. Apple</p>
+        <p>
+          Apple, explored through the Epic v. Apple corpus. Not an archive of PDFs. A curiosity machine for what the company was privately obsessed with.
+        </p>
       </div>
-      <div class="meta-pill">demo scaffold</div>
+      <div class="hero-side">
+        <div class="pill">V1 demo scaffold</div>
+        <button id="play-toggle" class="primary-btn" type="button">Play years</button>
+      </div>
     </header>
 
-    <section class="controls">
-      <div>
-        <div class="label">year</div>
-        <div id="year-filters" class="chip-row"></div>
+    <section class="stats-row">
+      <article class="stat-card surface">
+        <div class="stat-label">Company</div>
+        <div class="stat-value">Apple</div>
+      </article>
+      <article class="stat-card surface">
+        <div class="stat-label">Corpus</div>
+        <div class="stat-value">Epic v. Apple</div>
+      </article>
+      <article class="stat-card surface">
+        <div class="stat-label">Visible year</div>
+        <div id="active-year-label" class="stat-value">All</div>
+      </article>
+      <article class="stat-card surface">
+        <div class="stat-label">Matching moments</div>
+        <div id="result-count" class="stat-value">0</div>
+      </article>
+    </section>
+
+    <section class="timeline surface">
+      <div class="section-head">
+        <div>
+          <div class="section-eyebrow">Timeline</div>
+          <h2>Scrub the years</h2>
+        </div>
+        <div class="section-note">Click a year to reshape the canvas</div>
       </div>
-      <div>
-        <div class="label">topic</div>
-        <div id="topic-filters" class="chip-row"></div>
+      <div id="year-track" class="year-track"></div>
+    </section>
+
+    <section class="topics surface">
+      <div class="section-head">
+        <div>
+          <div class="section-eyebrow">Topics</div>
+          <h2>What was in the air?</h2>
+        </div>
+        <div class="section-note">Tap a topic to narrow the moments</div>
       </div>
+      <div id="topic-filters" class="topic-grid"></div>
     </section>
 
     <main class="content-grid">
-      <section class="panel panel-list">
-        <div class="panel-header">
-          <h2>moments</h2>
-          <span id="result-count" class="count-pill"></span>
+      <section class="panel surface">
+        <div class="panel-head">
+          <div>
+            <div class="section-eyebrow">Topic radar</div>
+            <h3>Intensity</h3>
+          </div>
+        </div>
+        <div id="topic-radar" class="topic-radar"></div>
+      </section>
+
+      <section class="panel surface panel-moments">
+        <div class="panel-head">
+          <div>
+            <div class="section-eyebrow">Moments</div>
+            <h3>Explorable cards</h3>
+          </div>
         </div>
         <div id="record-list" class="record-list"></div>
       </section>
 
-      <section class="panel panel-detail">
-        <div class="panel-header">
-          <h2>detail</h2>
+      <section class="panel surface panel-detail">
+        <div class="panel-head">
+          <div>
+            <div class="section-eyebrow">Inspector</div>
+            <h3>Selected moment</h3>
+          </div>
         </div>
         <div id="detail-view" class="detail-view empty">
-          <p>Select a moment to inspect the year, people, products, and source.</p>
+          <p>Select a moment to inspect the year, people, products, why it matters, and the source link.</p>
         </div>
       </section>
     </main>
